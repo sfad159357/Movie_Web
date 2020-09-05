@@ -7,9 +7,10 @@ import { toast } from "react-toastify"; // toast其實是個func，但在javascr
 axios.defaults.baseURL = process.env.REACT_APP_API_URL; // 此環境變數會隨著是dev還production env而有不同env的值
 // 如果在dev env，所連結的後端baseURL就是=http://localhost:3900/api
 // 如果在production env，所連結的後端baseURL就是部署在heroku的vidly-api-node連結網址：https://ntense-reef-87676.herokuapp.com/api
-
 // use()內兩個參數都是func，參1代表回覆成功，參2代表回覆有error
 // 透過interceptors將全範圍的非預期錯誤先統一處理，再來回傳Promise.reject(error)讓個別func針對預期性錯誤個別處理
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+
 axios.interceptors.response.use(null, (error) => {
   console.log("攔截");
   const expectedError =
