@@ -9,7 +9,7 @@ import App from "./App";
 import logger from "./components/service/logService";
 
 logger.init();
-console.log("SUPERMAN", process.env.REACT_APP_NAME);
+console.log("env", process.env);
 ReactDOM.render(
   <Router>
     <MovieApp />

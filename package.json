@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "@sentry/react": "^5.20.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -10,24 +11,31 @@
     "axios": "^0.18.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "bootstrap": "^4.1.1",
+    "env-cmd": "^10.1.0",
     "font-awesome": "^4.7.0",
     "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.10",
+    "moment": "^2.27.0",
     "prop-type": "0.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "3.4.1",
     "react-toastify": "^4.1.0",
     "react-transition-group": "^4.4.1",
-    "redux-devtools-extension": "^2.13.8"
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-dev": "dotenv -e. env.development react-app-rewired build",
+    "build-prod": "dotenv -e. env.production react-app-rewired build"
   },
   "eslintConfig": {
     "extends": "react-app"

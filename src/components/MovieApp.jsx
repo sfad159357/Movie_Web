@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Provider } from "react-redux";
 
 // Component
 import Movie from "./Movie";
@@ -15,10 +16,17 @@ import Rentals from "./route/Rentals";
 import NotFound from "./route/NotFound";
 import auth from "./service/authService";
 import ProtectedRoute from "./common/ProtectedRoute";
+import Bugs from "./Bugs";
+import BugsHook from "./BugsHook";
 
 // css
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
+
+// store
+import configureStore from "../store/configStore";
+
+const store = configureStore();
 
 export class MovieApp extends Component {
   state = {};
@@ -35,8 +43,13 @@ export class MovieApp extends Component {
     return (
       <>
         <ToastContainer />
+
         <Navbar user={this.state.user} />
+        {/* <div>{}</div> */}
         <main className="container">
+          <Provider store={store}>
+            <Bugs />
+          </Provider>
           <Switch>
             {/* MovieForm元件被保護，需要有user物件才能夠存取元件，否則會被導向loginForm */}
             <ProtectedRoute path="/movies/:id" component={MovieForm} />
