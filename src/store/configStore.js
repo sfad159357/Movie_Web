@@ -2,9 +2,9 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import reducer from "./reducers";
 import logger from "./middleware/logger";
-import customFunc from "./middleware/customFunc";
 import toast from "./middleware/toast";
 import api from "./middleware/api";
+// import customFunc from "./middleware/customFunc";
 
 // 除了code更簡潔，也可以執行異步action
 // function也可沒有實際的名字

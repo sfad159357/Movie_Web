@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Form from "./common/Form";
 import Joi from "joi-browser";
 import { getMovie, saveMovie } from "./service/movieService";
@@ -77,11 +77,13 @@ export class MovieForm extends Form {
     try {
       await saveMovie(this.state.data); // 將前端的data儲存到後端，函式會幫助再將前端data的欄位格式轉換成後台需要的格式
       this.props.history.push("/movies");
+      toast.success(`已成功更新${this.state.data.title}`);
     } catch (ex) {
       if (ex) toast.error("錯誤：無法更新此movie");
     }
   };
 
+  // title不能輸入中文
   render() {
     return (
       <form onSubmit={this.handleSubmit}>

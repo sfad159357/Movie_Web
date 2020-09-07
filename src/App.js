@@ -1,79 +1,60 @@
+// third-parties package
 import React, { Component } from "react";
-// import "./App.css";
-import CounterNavbar from "./components/counter/CounterNavbar";
-import Counters from "./components/counter/Counters";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
-class App extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
-    ],
-  };
-  constructor(props) {
-    super(props);
-    console.log("App元件起始化", props);
-  }
+// Component
+import Movie from "./components/Movie";
+import MovieForm from "./components/MovieForm";
+import RegisterForm from "./components/RegisterForm";
+import LoginForm from "./components/LoginForm";
+import Logout from "./components/Logout";
+import Navbar from "./components/common/Navbar";
+import Customers from "./components/route/Customers";
+import Rentals from "./components/route/Rentals";
+import NotFound from "./components/route/NotFound";
+import auth from "./components/service/authService";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+
+// css
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+
+export class MovieApp extends Component {
+  state = {};
 
   componentDidMount() {
-    console.log("App元件已掛載");
+    const user = auth.getAuthUser();
+    this.setState({ user });
   }
 
   render() {
-    console.log("App元件render");
-
+    const { user } = this.state;
     return (
-      <React.Fragment>
-        <CounterNavbar counters={this.state.counters} />
+      <>
+        <ToastContainer />
+        <Navbar user={this.state.user} />
         <main className="container">
-          <Counters
-            counters={this.state.counters}
-            onReset1={this.handleReset}
-            onAdd1={this.handleIncr}
-            onDecr1={this.handleDecr}
-            onDelete1={this.handleDelete}
-          />
+          <Switch>
+            {/* MovieForm元件被保護，需要有user物件才能夠存取元件，否則會被導向loginForm */}
+            <ProtectedRoute path="/movies/:id" component={MovieForm} />
+            <Route
+              path="/movies"
+              render={(props) => <Movie user={user} {...props} />}
+            />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/register" component={RegisterForm} />
+            <Route path="/customers" component={Customers} />
+            <Route path="/rentals" component={Rentals} />
+            <Route path="/not-found" component={NotFound} />
+            <Redirect from="/" to="/movies" />
+            <Redirect to="/not-found" />
+          </Switch>
         </main>
-      </React.Fragment>
+      </>
     );
   }
-  handleReset = () => {
-    this.setState({
-      counters: this.state.counters.map((counter) => {
-        counter.value = 0;
-        return counter;
-      }),
-    });
-  };
-
-  // 改用箭頭函式的話，裡面的this不用透過bind(this)來綁，就是直接綁定
-  handleIncr = (counter) => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter }; // 如果counter不用...淺複製，就無法區分prevProps和更新後props的值
-    counters[index].value++;
-    this.setState({
-      counters,
-    });
-  };
-
-  handleDecr = (counter) => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter }; // 如果counter不用...淺複製，就無法區分prevProps和更新後props的值
-    counters[index].value--;
-    this.setState({
-      counters,
-    });
-  };
-
-  handleDelete = (id) => {
-    this.setState({
-      counters: this.state.counters.filter((counter) => counter.id !== id),
-    });
-  };
 }
 
-export default App;
+export default MovieApp;

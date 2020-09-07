@@ -10,13 +10,13 @@ export class CounterNavbar extends Component {
 
     return (
       <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand" href="#">
+        <button type="button" className="link-button">
           Showing{" "}
           <span className="badge badge-pill badge-secondary">
             {itemsCounter}
           </span>{" "}
           items in shopping cart.
-        </a>
+        </button>
       </nav>
     );
   }

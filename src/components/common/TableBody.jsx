@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import _ from "lodash";
 
 // 這裡沒有Like, delete btn的痕跡，已經介面化

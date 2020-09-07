@@ -15,7 +15,6 @@ export default function ProtectedRoute({
       //   path={path}
       {...rest}
       render={(props) => {
-        console.log("route props", props);
         if (!user)
           return (
             <Redirect

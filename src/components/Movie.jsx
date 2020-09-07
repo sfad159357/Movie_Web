@@ -40,7 +40,6 @@ export class Movie extends Component {
 
   // 在元件渲染到實體DOM掛載後的函式
   async componentDidMount() {
-    console.log("Movie CMD");
     await this.populateGenres();
     await this.populateMovies();
   }
@@ -84,7 +83,6 @@ export class Movie extends Component {
   };
 
   render() {
-    console.log("Movie render");
     const {
       pageSize,
       currentPage,
@@ -166,7 +164,6 @@ export class Movie extends Component {
   };
 
   handlePageChange = (pageNumber) => {
-    console.log("pageChange");
     // console.log(pageNumber);
     this.setState({
       currentPage: pageNumber,
@@ -190,9 +187,11 @@ export class Movie extends Component {
     this.setState({
       movies,
     });
+    const movieDeleted = originalMovies.find((movie) => movie._id === movie_id);
 
     try {
       await deleteMovie(movie_id); // 真正從後台刪除指定id的movie，下面是前端的呈現
+      toast.success(`成功刪除${movieDeleted.title}`);
     } catch (error) {
       if (error.response && error.response.status === 404) {
         toast.error("錯誤：找不到此movie");

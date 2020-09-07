@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar({ user }) {
-  console.log("Navbar");
   const style = { color: "grey" };
   const activeStyle = {
     fontWeight: "bold",

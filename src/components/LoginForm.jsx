@@ -1,16 +1,10 @@
-import React, { Component } from "react";
-import Input from "./common/Input";
+import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/Form";
 import auth from "./service/authService";
 import { Redirect } from "react-router-dom";
 
 export class LoginForm extends Form {
-  //   username = React.createRef(); // ref物件
-
-  //   componentDidMount() {
-  //     this.username.current.focus();
-  //   }
   state = {
     data: { email: "", password: "" },
     errors: {},
@@ -21,15 +15,6 @@ export class LoginForm extends Form {
     password: Joi.string().required().label("Password"),
   };
 
-  //   不用套件的方法2，很麻煩瑣碎
-  //   validate2 = () => {
-  //     const errors = {};
-  //     const { email, password } = this.state.data;
-  //     if (email.trim() === "") errors.username = "Username is required"; // 透過String.trim()能將任何位元的空白字元都軋成""無位元字串
-  //     if (password.trim() === "") errors.password = "Password is required";
-  //     console.log("Object.keys:", Object.keys(errors));
-  //     return Object.keys(errors).length === 0 ? {} : errors; // Object.keys可以將物件內所有屬性(key)，轉化成字串型態的陣列:[ "key1", "key",...]
-  //   };
   doSubmit = async () => {
     const { state } = this.props.location;
     console.log("location state", state);
@@ -64,3 +49,19 @@ export class LoginForm extends Form {
 }
 
 export default LoginForm;
+
+//   username = React.createRef(); // ref物件
+
+//   componentDidMount() {
+//     this.username.current.focus();
+//   }
+
+//   不用套件的方法2，很麻煩瑣碎
+//   validate2 = () => {
+//     const errors = {};
+//     const { email, password } = this.state.data;
+//     if (email.trim() === "") errors.username = "Username is required"; // 透過String.trim()能將任何位元的空白字元都軋成""無位元字串
+//     if (password.trim() === "") errors.password = "Password is required";
+//     console.log("Object.keys:", Object.keys(errors));
+//     return Object.keys(errors).length === 0 ? {} : errors; // Object.keys可以將物件內所有屬性(key)，轉化成字串型態的陣列:[ "key1", "key",...]
+//   };

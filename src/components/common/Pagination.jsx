@@ -20,7 +20,11 @@ export default function Pagination({
             className={page === currentPage ? "page-item active" : "page-item"}
             key={page}
           >
-            <a className="page-link" onClick={() => onPageChange(page)}>
+            <a
+              href="#bottom"
+              className="page-link"
+              onClick={() => onPageChange(page)}
+            >
               {page}
             </a>
           </li>
