@@ -44,8 +44,8 @@
 13.非預期錯誤監測：
   使用Sentry.io來監測如果web app中使用者操作發生了error status不是在400~499之間，就會在Sentry.io被記錄起來，可以去檢查是使用者是哪   一段操作有問題。
   
-14.聚合解耦化：
-  將使用的元件進行解耦分離放置common folder內，裡面的元件跟moive一點牽連都沒有，所以也可以直接拿被非moive元件繼承或是當作子元件使用。
+14.reusable code：
+  將使用的元件進行解耦分離放置common folder內，裡面的元件跟主題moive一點牽連都沒有，所以也可以直接拿被非當前主題moive元件繼承或是當作 子元件使用。
   
 15.後端server:
   baseURL:https://obscure-atoll-21701.herokuapp.com
