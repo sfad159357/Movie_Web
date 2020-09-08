@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadBugs, resolveBug, getUnresolvedBugs } from "../store/bugs";
+import { loadBugs, resolveBug, getUnresolvedBugs } from "../bugs";
 
 // Hook，useXXX只適用在"functional component"
 // 只要state.entities.bugs.list改變，useSelector就會去運算，然後回傳新的值

@@ -19,7 +19,7 @@ export class MovieForm extends Form {
 
   schema = {
     _id: Joi.string(),
-    title: Joi.string().trim().required().label("Title"),
+    title: Joi.string().trim().min(5).required().label("Title"),
     genreId: Joi.string().required().label("Genre"),
     numberInStock: Joi.number()
       .min(0)

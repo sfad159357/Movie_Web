@@ -1,5 +1,5 @@
 import React from "react";
-import { loadBugs, resolveBug, getUnresolvedBugs } from "../store/bugs";
+import { loadBugs, resolveBug, getUnresolvedBugs } from "../bugs";
 import { connect } from "react-redux";
 
 class Bugs extends React.Component {
