@@ -4,7 +4,7 @@
 以下是此Movie_Web app功能和特色介紹：
 
 
-## Single-Page Application：
+### 1.Single-Page Application：
   點擊任何連結，不會產生頁面重新載入，減少資料大量載入，增加使用者體驗。
 
 ### 2.註冊和登入：
